@@ -120,3 +120,33 @@ import CloseIcon from "@mui/icons-material/Close";
                   </Link>
                 </MenuItem>
                 <Divider />
+                {/* Apply Now Button Inside the Dropdown */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "1rem 0",
+                  }}
+                >
+                  <Button
+                    component={Link}
+                    to="/apply"
+                    variant="outlined"
+                    sx={{
+                      color: "black",
+                      borderRadius: "100px",
+                      padding: "0.5rem 2rem",
+                      fontSize: "12px",
+                      width: "100%",
+                      textAlign: "left",
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      "&:hover": {
+                        backgroundColor: "#3e9ac6",
+                        color: "whitesmoke",
+                      },
+                    }}
+                    onClick={handleClose}
+                  >
+                    Apply Now
+                  </Button>
