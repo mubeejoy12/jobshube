@@ -45,3 +45,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+@keyframes upDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
