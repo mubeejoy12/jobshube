@@ -34,6 +34,7 @@ const Navbar = () => {
           backgroundColor: "#36517e",
           padding: { lg: "0px 10rem", md: "0px 0px" },
           boxShadow: 0,
+          zIndex: 1100,
         }}
       >
         <Toolbar
