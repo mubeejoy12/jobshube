@@ -67,14 +67,14 @@ const Hero = () => {
             variant="contained"
             color="primary"
             sx={{
-              fontSize: "16px",
+              fontSize: "13px",
               letterSpacing: "1px",
               display: "inline-block",
               borderRadius: "50px",
               transition: "0.5s",
-              padding: "10px 24px 11px 24px",
+              padding: "8px 20px 8px 20px",
               background: "#47b2e4",
-              marginTop: { xs: "16px", md: "24px" }, 
+              marginTop: { xs: "16px", md: "24px" },
             }}
           >
             Apply Now
