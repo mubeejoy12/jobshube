@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Box } from "@mui/material";
 import Hero from "../components/Hero";
 import Clients from "../components/Clients";
+import About from "../components/About";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       {/* Spacer for Navbar */}
       <Hero />
       <Clients />
+      <About />
     </Box>
   );
 };
