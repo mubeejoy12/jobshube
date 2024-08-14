@@ -1,3 +1,12 @@
+import React from "react";
+import Header from "./Header";
+import Dividers from "./Dividers";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
+import DescriptionIcon from "@mui/icons-material/Description";
+import LayersIcon from "@mui/icons-material/Layers";
+import SpeedIcon from "@mui/icons-material/Speed";
+
 const cardData = [
   {
     icon: <SportsBasketballIcon sx={{ fontSize: "40px", color: "#47b2e4" }} />,
@@ -24,10 +33,44 @@ const cardData = [
       "Beyond placements, Jobshub is dedicated to providing continuous support for long-term success.",
   },
 ];
+
+const Services = () => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.only("xs"));
   const isSm = useMediaQuery(theme.breakpoints.only("sm"));
   const isMd = useMediaQuery(theme.breakpoints.only("md"));
+
+  return (
+    <Box
+      sx={{
+        background: "#f3f5fa",
+        padding: { xs: "40px 0", md: "60px 0", lg: "80px 0" },
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          padding: { xs: "0 20px", sm: "0 30px" },
+        }}
+      >
+        <Header text={"SERVICES"} />
+        <Dividers />
+        <Typography
+          variant={isXs ? "body1" : "subtitle1"}
+          color="initial"
+          sx={{
+            mb: { xs: 4, md: 6 },
+            textAlign: "center",
+            maxWidth: "1200px",
+            margin: "0 auto 40px",
+            fontSize: { xs: "1rem", sm: "1.1rem", md: "1rem" },
+          }}
+        >
+          Unlock your path to success with Jobshub where personalized job
+          placements, efficient recruitment, a diverse talent network, and
+          ongoing support redefine your journey in the world of employment.
+        </Typography>
         <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
           {cardData.map((card, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
@@ -88,3 +131,9 @@ const cardData = [
             </Grid>
           ))}
         </Grid>
+      </Box>
+    </Box>
+  );
+};
+
+export default Services;
