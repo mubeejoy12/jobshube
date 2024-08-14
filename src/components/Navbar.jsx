@@ -14,6 +14,13 @@ import {
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+const navItems = [
+  { title: "Home", path: "/" },
+  { title: "About", path: "/about" },
+  { title: "Services", path: "/services" },
+  { title: "Team", path: "/team" },
+  { title: "Contact", path: "/contact" },
+];
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
