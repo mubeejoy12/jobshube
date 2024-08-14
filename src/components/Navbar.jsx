@@ -7,7 +7,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Stack,
   Toolbar,
   Typography,
   useTheme,
@@ -16,6 +15,7 @@ import {
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+
 const navItems = [
   { title: "Home", path: "/" },
   { title: "About", path: "/about" },
@@ -29,265 +29,157 @@ const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleClick = (event) => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
-    <Box>
-      <AppBar
-        position="fixed"
+    <AppBar
+      position="fixed"
+      sx={{
+        backgroundColor: "#36517e",
+        boxShadow: 0,
+        zIndex: 1100,
+      }}
+    >
+      <Toolbar
         sx={{
-          backgroundColor: "#36517e",
-          padding: { lg: "0px 10rem", md: "0px 0px" },
-          boxShadow: 0,
-          zIndex: 1100,
+          display: "flex",
+          justifyContent: "space-between",
+          padding: { xs: "0.5rem 1rem", md: "0.5rem 2rem", lg: "0.5rem 10rem" },
         }}
       >
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <Typography
-            variant="h5"
-            sx={{ fontSize: { md: "30px", sm: "23px" } }}
-          >
-            <Link
-              to="/"
-              style={{
-                color: "white",
-                textDecoration: "none",
-              }}
-            >
-              JOBSHUB
-            </Link>
-          </Typography>
+        <Typography variant="h5" component={Link} to="/" sx={{ 
+          fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" },
+          color: "white",
+          textDecoration: "none",
+          fontWeight: "bold",
+        }}>
+          JOBSHUB
+        </Typography>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: { lg: "40px", md: "30px", sm: "20px", xs: "30px" },
-            }}
-          >
-            {/*  typography top bar  */}
-            <Box
-              sx={{
-                display: { lg: "flex", md: "none", sm: "none", xs: "none" },
-              }}
-              gap={"15px"}
-            >
+        {!isMobile ? (
+          <Box sx={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+            {navItems.map((item) => (
               <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: "10px", md: "17px" } }}
+                key={item.title}
+                component={Link}
+                to={item.path}
+                sx={{
+                  color: "white",
+                  textDecoration: "none",
+                  fontSize: "1rem",
+                  fontWeight: 500,
+                  "&:hover": {
+                    color: "#47b2e4",
+                  },
+                }}
               >
-                <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                  Home
-                </Link>
+                {item.title}
               </Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: "10px", md: "17px" } }}
-              >
-                <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                  About
-                </Link>
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: "10px", md: "17px" } }}
-              >
-                <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                  Services
-                </Link>
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: "10px", md: "17px" } }}
-              >
-                <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                  Team
-                </Link>
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: "10px", md: "17px" } }}
-              >
-                <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                  Contact
-                </Link>
-              </Typography>
-            </Box>
-
-            {/*  */}
-
-            {/* button */}
+            ))}
             <Button
               component={Link}
-              to="/"
-              variant="body1"
-              color="primary"
+              to="/apply"
+              variant="outlined"
               sx={{
-                display: { lg: "flex", md: "none", sm: "none", xs: "none" },
+                color: "white",
+                borderColor: "#47b2e4",
                 borderRadius: "100px",
-                width: { lg: "100px", sm: "80px", xs: "50px" },
-                // padding: {lg: "7px 20px",md: "4px 14px", sm: "2px 10px" },
-                fontSize: { lg: "10px", sm: "7px", xs: "4px" },
-                border: "2px solid #47b2e4",
-                textAlign: "center",
+                padding: "0.5rem 1.5rem",
+                fontSize: "0.9rem",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#47b2e4",
+                  borderColor: "#47b2e4",
+                },
               }}
             >
               Apply Now
             </Button>
-            {/* Menu section at smaller screen display */}
-            <Stack
-              sx={{
-                display: { lg: "none", md: "flex" },
-              }}
-            >
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                onClick={open ? handleClose : handleClick}
-              >
-                {open ? (
-                  <CloseIcon sx={{ fontSize: { md: 35, sm: 30 } }} />
-                ) : (
-                  <MenuIcon sx={{ fontSize: { md: 35, sm: 30 } }} />
-                )}
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
+          </Box>
+        ) : (
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleMenu}
+          >
+            {Boolean(anchorEl) ? <CloseIcon /> : <MenuIcon />}
+          </IconButton>
+        )}
+
+        <Menu
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          sx={{
+            "& .MuiPaper-root": {
+              width: "100%",
+              maxWidth: "300px",
+              backgroundColor: "white",
+              boxShadow: "0px 8px 16px rgba(0,0,0,0.1)",
+              mt: 5,
+            },
+          }}
+        >
+          {navItems.map((item) => (
+            <MenuItem key={item.title} onClick={handleClose}>
+              <Typography
+                component={Link}
+                to={item.path}
                 sx={{
-                  display: {
-                    lg: "none",
-                    md: "block",
-                    sm: "block",
-                    xs: "block",
-                  },
-                  mt: 2,
-                  "& .MuiMenu-paper": {
-                    width: "97%",
-                    maxWidth: "none",
-                    backgroundColor: "white",
-                    boxShadow: "none",
-                    padding: "1rem",
-                    borderRadius: "1rem",
-                    height: "100%",
-                  },
+                  color: "#36517e",
+                  textDecoration: "none",
+                  width: "100%",
+                  fontSize: "1rem",
+                  fontWeight: 500,
                 }}
               >
-                <MenuItem onClick={handleClose}>
-                  <Link
-                    to="/"
-                    style={{
-                      textDecoration: "none",
-                      color: "#36517e",
-                      width: "100%",
-                    }}
-                  >
-                    Home
-                  </Link>
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleClose}>
-                  <Link
-                    to="/about"
-                    style={{
-                      textDecoration: "none",
-                      color: "#36517e",
-                      width: "100%",
-                    }}
-                  >
-                    About
-                  </Link>
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleClose}>
-                  <Link
-                    to="/services"
-                    style={{
-                      textDecoration: "none",
-                      color: "#36517e",
-                      width: "100%",
-                    }}
-                  >
-                    Services
-                  </Link>
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleClose}>
-                  <Link
-                    to="/team"
-                    style={{
-                      textDecoration: "none",
-                      color: "#36517e",
-                      width: "100%",
-                    }}
-                  >
-                    Team
-                  </Link>
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleClose}>
-                  <Link
-                    to="/contact"
-                    style={{
-                      textDecoration: "none",
-                      color: "#36517e",
-                      width: "100%",
-                    }}
-                  >
-                    Contact
-                  </Link>
-                </MenuItem>
-                <Divider />
-                {/* Apply Now Button Inside the Dropdown */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    padding: "1rem 0",
-                  }}
-                >
-                  <Button
-                    component={Link}
-                    to="/apply"
-                    variant="outlined"
-                    sx={{
-                      color: "black",
-                      borderRadius: "100px",
-                      padding: "0.5rem 2rem",
-                      fontSize: "12px",
-                      width: "100%",
-                      textAlign: "left",
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      "&:hover": {
-                        backgroundColor: "#3e9ac6",
-                        color: "whitesmoke",
-                      },
-                    }}
-                    onClick={handleClose}
-                  >
-                    Apply Now
-                  </Button>
-                </Box>
-              </Menu>
-            </Stack>
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+                {item.title}
+              </Typography>
+            </MenuItem>
+          ))}
+          <Divider />
+          <MenuItem>
+            <Button
+              component={Link}
+              to="/apply"
+              variant="contained"
+              fullWidth
+              sx={{
+                backgroundColor: "#47b2e4",
+                color: "white",
+                borderRadius: "100px",
+                padding: "0.5rem",
+                fontSize: "0.9rem",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#3e9ac6",
+                },
+              }}
+              onClick={handleClose}
+            >
+              Apply Now
+            </Button>
+          </MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 };
 
