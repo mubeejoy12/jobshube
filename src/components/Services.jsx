@@ -24,3 +24,7 @@ const cardData = [
       "Beyond placements, Jobshub is dedicated to providing continuous support for long-term success.",
   },
 ];
+  const theme = useTheme();
+  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
+  const isSm = useMediaQuery(theme.breakpoints.only("sm"));
+  const isMd = useMediaQuery(theme.breakpoints.only("md"));
