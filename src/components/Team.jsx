@@ -1,3 +1,14 @@
+import Header from "./Header";
+import Dividers from "./Dividers";
+import { Box, Grid, Typography } from "@mui/material";
+import XIcon from "@mui/icons-material/X";
+import Team1 from "../assets/team-1.jpg";
+import Team2 from "../assets/team-2.jpg";
+import Team3 from "../assets/team-3.jpg";
+import Team4 from "../assets/team-4.jpg";
+import TeamMemberCard from "./TeamMemberCard";
+
+const Team = () => {
   const teamMembers = [
     {
       image: Team1,
@@ -27,6 +38,8 @@
       description:
         "Dolorum tempora officiis odit laborum officiis et et accusamus",
     },
+  ];
+  return (
     <Box
       sx={{
         background: "#f3f5fa",
@@ -55,6 +68,7 @@
           commitment to your career success.
         </Typography>
       </Box>
+
       <Box
         sx={{
           display: "flex",
@@ -103,3 +117,8 @@
           ))}
         </Grid>
       </Box>
+    </Box>
+  );
+};
+
+export default Team;
