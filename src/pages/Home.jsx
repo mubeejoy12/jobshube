@@ -7,6 +7,10 @@ import About from "../components/About";
 import Services from "../components/Services";
 import Action from "../components/Action";
 import Team from "../components/Team";
+import Faq from "../components/Faq";
+import Contacts from "../components/Contacts";
+import NewsletterSubscription from "../components/NewsLetter";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -22,6 +26,10 @@ const Home = () => {
       <Services />
       <Action/>
       <Team/>
+      <Faq/>
+      <Contacts/>
+      <NewsletterSubscription/>
+      <Footer/>
     </Box>
   );
 };
