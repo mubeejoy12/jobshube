@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
+
 const navItems = [
   { title: "Home", path: "/" },
   { title: "About", path: "/about" },
@@ -53,12 +54,17 @@ const Navbar = () => {
           padding: { xs: "0.5rem 1rem", md: "0.5rem 2rem", lg: "0.5rem 10rem" },
         }}
       >
-        <Typography variant="h5" component={Link} to="/" sx={{ 
-          fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" },
-          color: "white",
-          textDecoration: "none",
-          fontWeight: "bold",
-        }}>
+        <Typography
+          variant="h5"
+          component={Link}
+          to="/"
+          sx={{
+            fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" },
+            color: "white",
+            textDecoration: "none",
+            fontWeight: "bold",
+          }}
+        >
           JOBSHUB
         </Typography>
 
@@ -84,7 +90,7 @@ const Navbar = () => {
             ))}
             <Button
               component={Link}
-              to="/apply"
+              // to="/apply"
               variant="outlined"
               sx={{
                 color: "white",
