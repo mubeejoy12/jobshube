@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
+import { Typography } from "@mui/material";
 
 const Header = ({ text }) => {
   return (
@@ -16,7 +16,6 @@ const Header = ({ text }) => {
       }}
     >
       {text}
-    
     </Typography>
   );
 };
