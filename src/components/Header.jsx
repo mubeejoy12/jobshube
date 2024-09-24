@@ -11,6 +11,8 @@ const Header = ({ text }) => {
         letterSpacing: "0.1em",
         fontSize: "32px",
         textAlign: "center",
+        fontFamily: "'Jost', sans-serif",
+        opticalSizing: "auto",
       }}
     >
       {text}
