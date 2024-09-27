@@ -15,7 +15,7 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <Box>
-      <Navbar />
+    
       <Box
         sx={{ height: "64px", background: "#36517e",  }}
       />{" "}
