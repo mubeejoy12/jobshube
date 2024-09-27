@@ -24,7 +24,7 @@ const Faq = () => {
       <Box
         sx={{
           width: isXs || isSm ? "95%" : isMd ? "85%" : "70%",
-          border: "2px solid yellow",
+
           margin: "0 auto",
           padding: 2,
         }}
