@@ -21,7 +21,7 @@ function App() {
   </BrowserRouter> */}
 
       {/* jjjjkkkkl */}
-      <Home />
+      {/* <Home /> */}
       {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/applynow" element={<Applyow />} />
