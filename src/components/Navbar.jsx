@@ -3,7 +3,6 @@ import {
   AppBar,
   Box,
   Button,
-  Divider,
   IconButton,
   Menu,
   MenuItem,
@@ -11,11 +10,11 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
+  Divider,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-
 
 const navItems = [
   { title: "Home", path: "/" },
@@ -29,6 +28,7 @@ const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const location = useLocation(); // Get the current route location
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,6 +37,9 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // Check if the current route is "/apply"
+  const isApplyPage = location.pathname === "/apply";
 
   return (
     <AppBar
@@ -68,7 +71,8 @@ const Navbar = () => {
           JOBSHUB
         </Typography>
 
-        {!isMobile ? (
+        {/* Conditionally render the navigation items based on the current page */}
+        {!isApplyPage && !isMobile && (
           <Box sx={{ display: "flex", alignItems: "center", gap: "2rem" }}>
             {navItems.map((item) => (
               <Typography
@@ -90,7 +94,7 @@ const Navbar = () => {
             ))}
             <Button
               component={Link}
-              // to="/apply"
+              to="/apply"
               variant="outlined"
               sx={{
                 color: "white",
@@ -108,7 +112,9 @@ const Navbar = () => {
               Apply Now
             </Button>
           </Box>
-        ) : (
+        )}
+
+        {!isApplyPage && isMobile && (
           <IconButton
             size="large"
             edge="start"
@@ -120,70 +126,73 @@ const Navbar = () => {
           </IconButton>
         )}
 
-        <Menu
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          sx={{
-            "& .MuiPaper-root": {
-              width: "100%",
-              maxWidth: "300px",
-              backgroundColor: "white",
-              boxShadow: "0px 8px 16px rgba(0,0,0,0.1)",
-              mt: 5,
-            },
-          }}
-        >
-          {navItems.map((item) => (
-            <MenuItem key={item.title} onClick={handleClose}>
-              <Typography
+        {/* Mobile menu items */}
+        {!isApplyPage && (
+          <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            sx={{
+              "& .MuiPaper-root": {
+                width: "100%",
+                maxWidth: "300px",
+                backgroundColor: "white",
+                boxShadow: "0px 8px 16px rgba(0,0,0,0.1)",
+                mt: 5,
+              },
+            }}
+          >
+            {navItems.map((item) => (
+              <MenuItem key={item.title} onClick={handleClose}>
+                <Typography
+                  component={Link}
+                  to={item.path}
+                  sx={{
+                    color: "#36517e",
+                    textDecoration: "none",
+                    width: "100%",
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                  }}
+                >
+                  {item.title}
+                </Typography>
+              </MenuItem>
+            ))}
+            <Divider />
+            <MenuItem>
+              <Button
                 component={Link}
-                to={item.path}
+                to="/apply"
+                variant="contained"
+                fullWidth
                 sx={{
-                  color: "#36517e",
-                  textDecoration: "none",
-                  width: "100%",
-                  fontSize: "1rem",
-                  fontWeight: 500,
+                  backgroundColor: "#47b2e4",
+                  color: "white",
+                  borderRadius: "100px",
+                  padding: "0.5rem",
+                  fontSize: "0.9rem",
+                  textTransform: "none",
+                  "&:hover": {
+                    backgroundColor: "#3e9ac6",
+                  },
                 }}
+                onClick={handleClose}
               >
-                {item.title}
-              </Typography>
+                Apply Now
+              </Button>
             </MenuItem>
-          ))}
-          <Divider />
-          <MenuItem>
-            <Button
-              component={Link}
-              to="/apply"
-              variant="contained"
-              fullWidth
-              sx={{
-                backgroundColor: "#47b2e4",
-                color: "white",
-                borderRadius: "100px",
-                padding: "0.5rem",
-                fontSize: "0.9rem",
-                textTransform: "none",
-                "&:hover": {
-                  backgroundColor: "#3e9ac6",
-                },
-              }}
-              onClick={handleClose}
-            >
-              Apply Now
-            </Button>
-          </MenuItem>
-        </Menu>
+          </Menu>
+        )}
       </Toolbar>
     </AppBar>
   );
